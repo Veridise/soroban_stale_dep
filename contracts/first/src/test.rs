@@ -2,7 +2,7 @@
 extern crate std;
 
 use crate::contract::{FirstContract, FirstContractClient};
-use soroban_sdk::{Env, BytesN, Bytes};
+use soroban_sdk::{Env};
 
 // we need this to deploy the `second` contract and pass its address
 // to the `first` contract
