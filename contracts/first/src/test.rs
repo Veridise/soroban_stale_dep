@@ -4,15 +4,15 @@ extern crate std;
 use crate::contract::{FirstContract, FirstContractClient};
 use soroban_sdk::{Env};
 
-// we need this to deploy the `second` contract and pass its address
-// to the `first` contract
-mod second {
+mod first {
     soroban_sdk::contractimport!(
-      file = "../../target/wasm32-unknown-unknown/release/second.wasm"
+      file = "../../target/wasm32-unknown-unknown/release/first.wasm"
     );
 }
 
 #[test]
 fn test() {
-    assert_eq!(second::VerySeriousEnum::Warning as u32, 5);
+    let env = Env::default();
+    let first = FirstContractClient::new(&env, &env.register_contract(None, FirstContract {}));
+    assert_eq!(first.consumer(), 5);
 }
